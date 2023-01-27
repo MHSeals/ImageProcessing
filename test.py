@@ -1,6 +1,7 @@
 from PIL import Image
 from time import sleep
 import os
+import Webcam
 
 def test(image):
     print(image);
@@ -26,8 +27,11 @@ def test(image):
 
 testimgs = "./testimages"
 
-arr = os.listdir(testimgs);
+# arr = os.listdir(testimgs);
+# 
+# for img in arr:
+#     test(testimgs+"/"+img)
+#     exit();
 
-for img in arr:
-    test(testimgs+"/"+img)
-    exit();
+webcam = Webcam.Webcam()
+webcam.get_frames()

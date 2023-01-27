@@ -1,23 +1,29 @@
-import cv2
+import cv2 as cv
 import numpy as np
 
-cap = cv2.VideoCapture(0)
+img = cv.imread("./testimages/Beach-Marker-Buoys-hero.jpg")
 
-while (1):
-    _, frame = cap.read()
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
 
-    # Threshold of blue in HSV space
-    lower_blue = np.array([60, 35, 140])
-    upper_blue = np.array([180, 255, 255])
-    
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
-    result = cv2.bitwise_and(frame, frame, mask=mask)
-    
-    cv2.imshow('frame', frame)
-    cv2.imshow('mask', mask)
-    cv2.imshow('result', result)
+#set the lower and upper bounds for the green hue
+lower_green = np.array([50,100,50])
+upper_green = np.array([70,255,255])
 
-    cv2.waitKey(0)
-cv2.destroyAllWindows()
-cap.release()
+#create a mask for green colour using inRange function
+mask = cv.inRange(hsv, lower_green, upper_green)
+
+#perform bitwise and on the original image arrays using the mask
+res = cv.bitwise_and(img, img, mask=mask)
+
+#create resizable windows for displaying the images
+cv.namedWindow("res", cv.WINDOW_NORMAL)
+cv.namedWindow("hsv", cv.WINDOW_NORMAL)
+cv.namedWindow("mask", cv.WINDOW_NORMAL)
+
+#display the images
+cv.imshow("mask", mask)
+cv.imshow("hsv", hsv)
+cv.imshow("res", res)
+
+if cv.waitKey(0):
+    cv.destroyAllWindows()
