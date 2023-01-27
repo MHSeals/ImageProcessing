@@ -1,5 +1,6 @@
 import cv2
 import threading
+import time
 
 class Webcam:
     def __init__(self):
@@ -26,7 +27,7 @@ class Webcam:
 
     def get_frames(self):
         while not len(self.frames) == self.frames_count:
-            print(f'Waiting to capture {frames_count} frames from the camera')
+            print(f'Waiting to capture {self.frames_count} frames from the camera')
             time.sleep(1)
 
         return self.frames
