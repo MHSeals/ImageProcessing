@@ -10,6 +10,9 @@ class Webcam:
         self.frames_count = 10
         self.thread = threading.Thread(target=self.capture_frames)
 
+        self.capture.open(0)
+        self.thread.start()
+
 
     def capture_frames(self):
         while self.running:
