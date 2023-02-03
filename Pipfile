@@ -7,6 +7,8 @@ name = "pypi"
 pillow = "*"
 opencv-python = "*"
 numpy = "*"
+pyrealsense2 = "*"
+autopep8 = "*"
 
 [dev-packages]
 pylint = "*"
